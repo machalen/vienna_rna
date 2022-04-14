@@ -14,8 +14,12 @@ RUN apt-get update && apt-get install --yes build-essential gcc-multilib apt-uti
 libbz2-dev perl gzip ncurses-dev libncurses5-dev libbz2-dev \
 liblzma-dev libssl-dev libcurl4-openssl-dev libgdbm-dev libnss3-dev libreadline-dev libffi-dev wget
 
-#Install python3
+#Install python3 and install the required packages
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -yq install python3
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -yq install python3-pip python-dev
+RUN pip3 install twobitreader
+RUN pip3 install biopython
+RUN pip3 install optparse-pretty
 
 #Install required libraries in ubuntu for samtools
 RUN apt-get update -y && apt-get install -y unzip g++
